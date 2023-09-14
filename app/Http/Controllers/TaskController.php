@@ -6,31 +6,25 @@ namespace App\Http\Controllers;
 use App\Models\Task;
 use Illuminate\Http\Request;
 
-class TaskController extends Controller
-{
-    public function index()
-    {
-        return view('index');
+class TaskController extends Controller {
+
+    public function getAll() {
+        $tasks = Task::all();
+        return view('tasks', $data = ['tasks' => $tasks]);
     }
 
-    public function getAll()
-    {
-        $task = Task::all();
-        return $task;
-    }
-
-    public function checkTask(Request $request)
-    {
+    public function onSwitch(Request $request) {
         $id = $request->id;
         $task = Task::find($id);
         if ($task) {
-            return $task->toArray();
+            $task->completed=$request->completed;
+            $task->save();
+            return '';
         }
         return 'Not found';
     }
 
-    public function create(Request $request)
-    {
+    public function onCreate(Request $request) {
         $task = new Task();
         $text = $request->text;
         if ($text) {
@@ -38,15 +32,15 @@ class TaskController extends Controller
             $task->save();
             return redirect('/');
         }
-        return 'Write the text';
+        return 'The text was not written';
     }
 
-    public function delete(Request $request)
-    {
+    public function onDelete(Request $request) {
         $id = $request->id;
         $task = Task::find($id);
         if ($task) {
-            return $task->delete();
+            $task->delete();
+            return redirect('/');
         }
         return 'Not found';
     }
