@@ -14,8 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [TaskController::class, 'getAll']);
-Route::patch('/', [TaskController::class, 'onSwitch']);
-Route::delete('/', [TaskController::class, 'onDelete']);
-Route::post('/', [TaskController::class, 'onCreate']);
+Route::get('/', [TaskController::class, 'getTasks']);
+Route::patch('/', [TaskController::class, 'isComplete']);
+Route::delete('/', [TaskController::class, 'deleteTask']);
+Route::post('/', [TaskController::class, 'createTask']);
 

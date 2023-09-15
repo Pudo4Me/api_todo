@@ -5,7 +5,7 @@
  */
 
 import './bootstrap';
-import { createApp } from 'vue';
+import {createApp} from 'vue';
 
 /**
  * Next, we will create a fresh Vue application instance. You may then begin
@@ -16,6 +16,7 @@ import { createApp } from 'vue';
 const app = createApp({});
 
 import ExampleComponent from './components/ExampleComponent.vue';
+
 app.component('example-component', ExampleComponent);
 
 /**
@@ -39,12 +40,12 @@ app.component('example-component', ExampleComponent);
 app.mount('#app');
 
 
-(function($) {
+(function ($) {
     'use strict';
-    $(function() {
+    $(function () {
         var todoListItem = $('.todo-list');
         var todoListInput = $('.todo-list-input');
-        $('.todo-list-add-btn').on("click", function(event) {
+        $('.todo-list-add-btn').on("click", function (event) {
             event.preventDefault();
 
             var item = $(this).prevAll('.todo-list-input').val();
@@ -54,8 +55,8 @@ app.mount('#app');
                     url: "/",
                     type: "POST",
                     data: JSON.stringify({
-                        text:item,
-                        _token:TOKEN
+                        text: item,
+                        _token: TOKEN
                     }),
                     contentType: "app/json",
                     complete: function () {
@@ -67,14 +68,17 @@ app.mount('#app');
 
         });
 
-        todoListItem.on('change', '.checkbox', function() {
-            var completed;
+        todoListItem.on('change', '.checkbox', function () {
+            let completed;
+            let parent = $(this).parent();
             if ($(this).attr('checked')) {
                 $(this).removeAttr('checked');
+                parent.removeClass('completed');
                 completed = false;
             } else {
                 completed = true;
                 $(this).attr('checked', 'checked');
+                parent.addClass('completed');
             }
 
             $.ajax({
@@ -91,11 +95,9 @@ app.mount('#app');
             });
 
 
-            // $(this).closest("li").toggleClass('completed');
-
         });
 
-        todoListItem.on('click', '.remove', function() {
+        todoListItem.on('click', '.remove', function () {
             $(this).parent().remove();
             $.ajax({
                 url: "/",

@@ -12,7 +12,8 @@
     @vite('resources/js/app.js')
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <title>Hello, world!</title>
 </head>
@@ -24,12 +25,23 @@
                 <div class="card px-3">
                     <div class="card-body">
                         <h4 class="card-title">Awesome Todo list</h4>
-                        <div class="add-items d-flex"> <input type="text" class="form-control todo-list-input" placeholder="What do you need to do today?"> <button class="add btn btn-primary font-weight-bold todo-list-add-btn">Add</button> </div>
+                        <div class="add-items d-flex"><input type="text" class="form-control todo-list-input"
+                                                             placeholder="What do you need to do today?">
+                            <button class="add btn btn-primary font-weight-bold todo-list-add-btn">Add</button>
+                        </div>
                         <div class="list-wrapper">
                             <ul class="d-flex flex-column-reverse todo-list">
                                 @foreach ($tasks as $task)
                                     <li>
-                                        <div class="form-check"> <label class="form-check-label"> <input class="checkbox" type="checkbox" {{ $task->completed ? "checked" : "" }} data-id="{{ $task->id }}"> {{ $task->text }} <i class="input-helper"></i></label> </div> <i class="remove mdi mdi-close-circle-outline" data-id="{{ $task->id }}"></i>
+                                        <div class="form-check">
+                                            <label class="form-check-label <?=$task->completed ? 'completed' : ''?>">
+                                                <input class="checkbox"
+                                                       type="checkbox"
+                                                       {{ $task->completed ? "checked" : "" }} data-id="{{ $task->id }}"> {{ $task->text }}
+                                                <i class="input-helper"></i>
+                                            </label>
+                                        </div>
+                                        <i class="remove mdi mdi-close-circle-outline" data-id="{{ $task->id }}"></i>
                                     </li>
                                 @endforeach
                             </ul>
@@ -43,7 +55,9 @@
 <!-- Optional JavaScript; choose one of the two! -->
 
 <!-- Option 1: Bootstrap Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
 
 <!-- Option 2: Separate Popper and Bootstrap JS -->
 

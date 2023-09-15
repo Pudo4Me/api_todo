@@ -6,25 +6,29 @@ namespace App\Http\Controllers;
 use App\Models\Task;
 use Illuminate\Http\Request;
 
-class TaskController extends Controller {
+class TaskController extends Controller
+{
 
-    public function getAll() {
+    public function getTasks()
+    {
         $tasks = Task::all();
         return view('tasks', $data = ['tasks' => $tasks]);
     }
 
-    public function onSwitch(Request $request) {
+    public function isComplete(Request $request)
+    {
         $id = $request->id;
         $task = Task::find($id);
         if ($task) {
-            $task->completed=$request->completed;
+            $task->completed = $request->completed;
             $task->save();
-            return '';
+            return redirect('/');
         }
         return 'Not found';
     }
 
-    public function onCreate(Request $request) {
+    public function createTask(Request $request)
+    {
         $task = new Task();
         $text = $request->text;
         if ($text) {
@@ -35,7 +39,8 @@ class TaskController extends Controller {
         return 'The text was not written';
     }
 
-    public function onDelete(Request $request) {
+    public function deleteTask(Request $request)
+    {
         $id = $request->id;
         $task = Task::find($id);
         if ($task) {
