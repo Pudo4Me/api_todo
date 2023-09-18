@@ -21,8 +21,7 @@ class TaskController extends Controller
         $task = Task::find($id);
         if ($task) {
             $task->completed = $request->completed;
-            $task->save();
-            return redirect('/');
+            return $task->save();
         }
         return 'Not found';
     }

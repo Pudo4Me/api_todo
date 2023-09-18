@@ -6,10 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script type="text/javascript">
-        var TOKEN = "{{csrf_token()}}";
+    var TOKEN = "{{csrf_token()}}";
     </script>
-    @vite('resources/css/app.css')
-    @vite('resources/js/app.js')
+{{--        @vite('resources/css/app.css')--}}
+{{--        @vite('resources/js/app.js')--}}
+
+    <link href="{{asset('app.css')}}" rel="stylesheet">
+    <script type="text/javascript" src="{{ asset('app.js') }}"></script>
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
